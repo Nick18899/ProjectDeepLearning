@@ -1,13 +1,12 @@
-# import fasttext
-# import fasttext.util
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
-# fasttext.util.download_model('en', if_exists='ignore')
-# ft = fasttext.load_model('cc.en.300.bin')
-# print(ft.get_dimension())
-# fasttext.util.reduce_model(ft, 100)
-# print(ft.get_dimension())
-# ft.save_model('cc.en.100.bin')
+def download_model():
+    import fasttext.util
+    fasttext.util.download_model('en', if_exists='ignore')  # English
 
-from gensim.models.wrappers import FastText
-model = FastText.load_fasttext_format('cc.en.100.bin')
-print(model.most_similar('better'))
+# download_model()
+import fasttext
+model = fasttext.load_model('./cc.en.100.bin')
+vect = model.get_sentence_vector("some string") # 1 sentence
+print(vect)
