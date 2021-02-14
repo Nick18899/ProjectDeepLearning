@@ -1,6 +1,9 @@
 <template>
   <div id="app" class="col-md-4">
-    <label>Enter some text</label>
+    <br>
+    <labelAplpha>
+      <label>Enter some text</label>
+    </labelAplpha>
     <br>
     <inputAlpha>
       <BaseInput :value="inputString" type="string" v-model="inputString"/>
@@ -8,8 +11,11 @@
     <butAlpha>
       <BaseButton @click="sendInputString">Analyze</BaseButton>
     </butAlpha>
-    <br>
-
+    <labelAlpha>
+      <h3>Corresponding hash-tegs for your text:</h3>
+      <br>
+      <p style="white-space: pre-line">{{tags}}</p>
+    </labelAlpha>
   </div>
 </template>
 
@@ -22,12 +28,25 @@ export default {
   components: {BaseButton, BaseInput},
   data(){
     return {
-      inputString: ""
+      inputString: "",
+      inputNumber: 0,
+      outputString: "",
+      tags: "1"
     }
   },
   methods: {
     sendInputString: async function() {
-
+        const resp = await fetch('http://127.0.0.1:5000/gettingTags',{
+          method: "GET",
+          body: JSON.stringify({
+            value: this.inputString,
+            number: this.inputNumber
+          }),
+          headers: {
+            "Content-Type": 'application/json'
+          }
+        })
+        this.tags = await resp.json().get("tags")
     }
   }
 
