@@ -12,7 +12,7 @@ def gettingTags():
     text = request.get_json()
     #print(text)
     return jsonify(
-        hashtags="fuck u")
+        hashtags="fuck you")
 
 
 def main():

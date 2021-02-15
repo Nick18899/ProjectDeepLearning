@@ -47,7 +47,9 @@ export default {
             "Content-Type": 'application/json'
           }
         })
-        this.tags = await resp.json()
+        const jsn = await resp.json()
+        this.tags = jsn.hashtags
+
     }
   }
 
