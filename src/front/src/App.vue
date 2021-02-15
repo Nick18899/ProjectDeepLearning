@@ -36,8 +36,9 @@ export default {
   },
   methods: {
     sendInputString: async function() {
-        const resp = await fetch('http://127.0.0.1:5000/gettingTags',{
-          method: "GET",
+      console.log("alpha")
+        const resp = await fetch('http://localhost:5050/gettingTags',{
+          method: "POST",
           body: JSON.stringify({
             value: this.inputString,
             number: this.inputNumber
@@ -46,7 +47,7 @@ export default {
             "Content-Type": 'application/json'
           }
         })
-        this.tags = await resp.json().get("tags")
+        this.tags = await resp.json()
     }
   }
 
