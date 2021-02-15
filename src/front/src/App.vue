@@ -2,30 +2,32 @@
   <div id="app" class="col-md-4">
     <br>
     <labelAplpha>
-      <label>Enter some text</label>
+      <label>Enter some text here:</label>
     </labelAplpha>
     <br>
     <inputAlpha>
       <BaseInput :value="inputString" type="string" v-model="inputString"/>
     </inputAlpha>
+    <inputNumberAlpha>
+      <BaseNumberInput :value="inputNumber" type="number" v-model="inputNumber"/>
+    </inputNumberAlpha>
     <butAlpha>
       <BaseButton @click="sendInputString">Analyze</BaseButton>
     </butAlpha>
-    <labelAlpha>
-      <h3>Corresponding hash-tegs for your text:</h3>
-      <br>
-      <p style="white-space: pre-line">{{tags}}</p>
-    </labelAlpha>
+    <br>
+      <label style="margin-left: 20px; margin-top: 10px">Corresponding hashtags for your text:</label>
+      <p style="white-space: pre-line; margin-left: 20px; margin-top: 10px">{{tags}}</p>
   </div>
 </template>
 
 <script>
 import BaseInput from "@/components/BaseInput.vue";
 import BaseButton from "@/components/BaseButton.vue";
+import BaseNumberInput from "@/components/BaseNumberInput";
 
 export default {
   name: 'app',
-  components: {BaseButton, BaseInput},
+  components: {BaseNumberInput, BaseButton, BaseInput},
   data(){
     return {
       inputString: "",
@@ -49,7 +51,6 @@ export default {
         })
         const jsn = await resp.json()
         this.tags = jsn.hashtags
-
     }
   }
 
