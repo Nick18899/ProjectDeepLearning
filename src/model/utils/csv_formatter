@@ -1,0 +1,5 @@
+#!/bin/bash
+input=$1
+output=$2
+awk '{split($0,a,",\""); print a[1],"|",a[5],"|",a[6]}' $input > $output
+
