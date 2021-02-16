@@ -9,7 +9,7 @@
       <BaseInput :value="inputString" type="string" v-model="inputString"/>
     </inputAlpha>
     <inputNumberAlpha>
-      <BaseNumberInput :value="inputNumber" type="number" v-model="inputNumber"/>
+      <BaseNumberInput :value="inputNumber"  type="number" v-model="inputNumber"/>
     </inputNumberAlpha>
     <butAlpha>
       <BaseButton @click="sendInputString">Analyze</BaseButton>
@@ -31,7 +31,7 @@ export default {
   data(){
     return {
       inputString: "",
-      inputNumber: 0,
+      inputNumber: 1,
       outputString: "",
       tags: "1"
     }
