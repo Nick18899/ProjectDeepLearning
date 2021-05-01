@@ -6,7 +6,7 @@ import fasttext
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-model = fasttext.load_model('./cc.en.100.bin')
+model = fasttext.load_model('./cc.en.300.bin')
 
 
 def find_most_similar_sentence_from_dataset(sentence, dataset):
@@ -20,8 +20,7 @@ def find_most_similar_sentence_from_dataset(sentence, dataset):
     return answer
 
 
-def scan_kaggle_dataset():  # scanning kaggle dataset with 16kk tweets (https://www.kaggle.com/kazanova/sentiment140)
-    # !!! do not forget to run ../utils/csv_formatter to filter the whole dataset for sentences with hashtags and to remove unnecessary columns
+def scan_kaggle_dataset():
     import csv
     with open('kaggle_dataset.csv', newline='') as csvfile:
         cnt = 0
@@ -32,8 +31,8 @@ def scan_kaggle_dataset():  # scanning kaggle dataset with 16kk tweets (https://
 
 def searchingTheMostSimilarTwit(sentence):
     hashtags = scan_kaggle_dataset()
-    normal_tags = ["politics", "planes", "science", "study", "animals", "sport", "books", "computer", "geography", "country"]
-    words = find_most_similar_sentence_from_dataset(sentence, normal_tags)
+    normal_tags = ["politics", "planes", "science", "study", "animal", "sport", "books", "computer", "geography", "country"]
+    words = find_most_similar_sentence_from_dataset(sentence, hashtags)
     print(words)
     return words
 
