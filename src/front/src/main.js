@@ -6,6 +6,7 @@ import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
 
 
-createApp(App)
-    .use(ElementPlus)
-    .mount("#app");
+const app = createApp(App)
+app.use(ElementPlus)
+app.mount('#app')
+
