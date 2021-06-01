@@ -1,22 +1,26 @@
 <template>
-  <div id="app" class="col-md-4">
-    <br>
-    <labelAplpha>
-      <label>Enter some text here:</label>
-    </labelAplpha>
-    <br>
-    <inputAlpha>
-      <BaseInput :value="inputString" type="string" v-model="inputString"/>
-    </inputAlpha>
-    <inputNumberAlpha>
-      <BaseNumberInput :value="inputNumber"  type="number" v-model="inputNumber"/>
-    </inputNumberAlpha>
-    <butAlpha>
-      <BaseButton @click="sendInputString">Analyze</BaseButton>
-    </butAlpha>
-    <br>
-      <label style="margin-left: 20px; margin-top: 10px">Corresponding hashtags for your text:</label>
-      <p style="white-space: pre-line; margin-left: 20px; margin-top: 10px">{{tags}}</p>
+  <div id="app">
+    <section class="container-fluid bg">
+      <section class = "row justify-content-center">
+        <section class = "col-12 col-sm-6 col-md-3">
+    <form class = "form-container">
+      <div class = "form-group">
+        <label>Enter some text here:</label>
+      </div>
+      <div class = "form-group">
+        <BaseInput :value="inputString" type="string" v-model="inputString"/>
+      </div>
+      <div class = "form-group">
+        <BaseNumberInput :value="inputNumber"  type="number" v-model="inputNumber"/>
+      </div>
+        <BaseButton @click="sendInputString">Analyze</BaseButton>
+      <br>
+      <label style="margin-top: 10px">Corresponding hashtags for your text:</label>
+      <p style="white-space: pre-line">{{tags}}</p>
+    </form>
+        </section>
+      </section>
+    </section>
   </div>
 </template>
 
@@ -33,7 +37,7 @@ export default {
       inputString: "",
       inputNumber: 1,
       outputString: "",
-      tags: "1"
+      tags: " "
     }
   },
   methods: {
