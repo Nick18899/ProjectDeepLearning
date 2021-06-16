@@ -1,15 +1,44 @@
 .bg{
-    background: #ffffff;
+    background: rgba(17, 19, 28, 0.92);
     height: 100vh;
+    width: 100%;
+    background-size: 200% ;
 }
 
+.bg2{
+    background: #ffffff;
+    height: 100vh;
+    width: 100%;
+    background-size: 200% ;
+}
 
-.form-container{
+.form-container-light{
     position: absolute;
     top: 20vh;
     background: #fff;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px #000;
+}
 
+.form-container-dark{
+    color: white;
+    position: absolute;
+    top: 20vh;
+    background: rgb(32, 59, 85);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000;
+}
+
+.form-check1 {
+    position: relative;
+    display: block;
+    padding-left: 2.5rem;
+}
+
+@media only screen and (max-width: 678px) {
+    .bg{
+        backgtound-size:300%;
+    }
 }
