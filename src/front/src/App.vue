@@ -44,7 +44,7 @@ export default {
       outputString: "",
       tags: " ",
       checked: false,
-      theme: "Choose the dark side"
+      theme: "Click to choose the dark side"
     }
   },
   methods: {
@@ -64,11 +64,11 @@ export default {
       this.tags = jsn.hashtags.toString()
     },
     switchOfTheme: async function(){
-      if(this.theme == "Choose the dark side") {
-        this.theme = "Choose the light side"
+      if(this.theme == "Click to choose the dark side") {
+        this.theme = "Click to choose the light side"
       }
       else{
-        this.theme = "Choose the dark side"
+        this.theme = "Click to choose the dark side"
       }
       if(this.checked){
         this.checked = false
