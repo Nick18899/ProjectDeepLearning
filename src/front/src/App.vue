@@ -61,7 +61,7 @@ export default {
         }
       })
       const jsn = await resp.json()
-      this.tags = jsn.hashtags.toString()
+      this.tags = jsn.hashtags.join('\n')
     },
     switchOfTheme: async function(){
       if(this.theme == "Click to choose the dark side") {
