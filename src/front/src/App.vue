@@ -50,7 +50,7 @@ export default {
   methods: {
     sendInputString: async function() {
       //console.log("alpha")
-      const resp = await fetch('http://localhost:5050/gettingTags',{
+      const resp = await fetch('http://34.88.46.21/:5050/gettingTags',{
         method: "POST",
         body: JSON.stringify({
           value: this.inputString,
