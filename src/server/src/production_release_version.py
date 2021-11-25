@@ -1,4 +1,4 @@
-aimport os
+import os
 from flask_cors import CORS, cross_origin
 from flask import Flask, request, jsonify
 import flask_cors
