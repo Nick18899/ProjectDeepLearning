@@ -6,35 +6,45 @@ import fasttext
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-model = fasttext.load_model('./cc.en.300.bin')
+content = ''
+is_parsed = ''
+k = 0
 
 
-def find_most_similar_sentence_from_dataset(sentence, dataset):
-    vectorized_dataset = [(sentence, model.get_sentence_vector(sentence)) for sentence in dataset]
-    vectorized_sentence = model.get_sentence_vector(sentence)  # 1 sentence
-    answer = 'cat'
-    import numpy as np
-    for (sentence, vector) in vectorized_dataset:
-        if np.dot(vector, vectorized_sentence) > np.dot(model.get_sentence_vector(answer), vectorized_sentence):
-            answer = sentence
-    return answer
+# model = fasttext.load_model('./cc.en.300.bin')
+
+def getFileViaPath(file_path):
+    text_file = open(file_path, 'r')
+    global content
+    content = text_file.read()
+    text_file.close()
 
 
-def scan_kaggle_dataset():
-    import csv
-    with open('kaggle_dataset.csv', newline='') as csvfile:
-        cnt = 0
-        spamreader = csv.reader(csvfile, delimiter='|', quotechar='|')
-        sentences = [row[2] for row in spamreader]
-    return sentences
+def splitToStrings(s, size_of_strings=30):
+    data = []
+    for i in range(0, (len(s) // size_of_strings)):
+        data.append(s[(i * size_of_strings): ((i + 1) * size_of_strings)])
+    data.append(s[((len(s) // size_of_strings) - 1) * size_of_strings:])
+    return data
 
 
-def searchingTheMostSimilarTwit(sentence):
-    hashtags = scan_kaggle_dataset()
-    normal_tags = ["politics", "planes", "science", "study", "animal", "sport", "books", "computer", "geography", "country"]
-    words = find_most_similar_sentence_from_dataset(sentence, hashtags)
-    print(words)
-    return words
+def parseTextToArrays(size_of_strings):
+    global is_parsed
+    global content
+    data = []
+    if is_parsed == '':
+        is_parsed = 'true'
+        data = splitToStrings(size_of_strings, content)
+    return data
+
+
+def getTextViaK(num_of_char):
+    return splitToStrings(num_of_char, content[k])
+
+
+def writeInputTextViaGUI(text):
+    global content
+    content = text
 
 
 @app.route("/gettingTags", methods=['GET', 'POST', 'DELETE', 'PUT'])
@@ -42,7 +52,7 @@ def searchingTheMostSimilarTwit(sentence):
 def gettingTags():
     text = request.get_json()
     print(text['value'])
-    result = searchingTheMostSimilarTwit(text['value'])
+    result = '''searchingTheMostSimilarTwit(text['value'])'''
     return jsonify(hashtags=result)
 
 
