@@ -4,7 +4,7 @@
       v-model="age"
       min="1"
       max="100"
-      placeholder="Enter number"
+      placeholder="Number of characters"
       class="form-control"
   />
 </template>

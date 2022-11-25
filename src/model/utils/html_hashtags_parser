@@ -1,3 +1,0 @@
-#!/bin/sh
-
-curl -k -q 'https://www.tweeplers.com/hashtags/?cc=WORLD' | grep 'col-xs' | tr " " "\n" | grep name | cut -d '=' -f 2
